@@ -1,0 +1,7 @@
+This build contains a home page with a link to a users page and an events page. 
+
+The Users link should resemble a registration page. 
+
+The Users "Show" page should show all events for that user. That is not implemented yet. 
+
+The Events link allows users to create events and assign them to their user account. 
