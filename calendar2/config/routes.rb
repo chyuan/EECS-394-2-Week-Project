@@ -1,4 +1,6 @@
 Calendar2::Application.routes.draw do
+  resources :free_times
+
   resources :events
 
   resources :users
