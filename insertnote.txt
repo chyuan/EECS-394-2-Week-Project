@@ -1,0 +1,14 @@
+To initialize the database that contains all of the free hours, you must prepopulate it using the insert.sql script. 
+It will make a table with 168 entries that correspond to the hours in a given week. 
+
+To do this correctly: 
+
+make sure your database is up to date in rails: rake db:migrate
+
+open up your mysql shell (someone who knows how this works on a mac can elaborate)
+
+Type in shell: USE calendar2_development
+
+Type in shell: SOURCE C:/Path/To/insert.sql
+
+If you are able to do this correctly, update this document with better instructions. 
