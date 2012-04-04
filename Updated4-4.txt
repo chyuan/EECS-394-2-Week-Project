@@ -1,0 +1,5 @@
+This build fixes most of the bugs in processing event time calculations when events are created. 
+
+Similar logic still needs to be added for updating and deleting events which should decrement from the hours table. 
+
+Note that the link is /free_times and is not yet added to the homepage. 

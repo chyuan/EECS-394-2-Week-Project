@@ -48,20 +48,40 @@ class EventsController < ApplicationController
     @users = User.all
     respond_to do |format|
       if @event.save
-        range = '2012-04-08 00:00:00'..'2012-04-15 23:59:59'
-	logger.debug "Is event in range?: #{@event.starttime === range}"
 	if (@event.starttime.year == 2012 and @event.starttime.month == 4 and @event.starttime.day >= 8)
 	  logger.debug "Event in range: #{@event.id}"
 	  for day in @event.starttime.day..@event.endtime.day
-	    for hour in @event.starttime.hour..@event.starttime.hour
-	       logger.debug "Event in range: #{day}"
-	      logger.debug "Event in range: #{hour}"
-              @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
-	      logger.debug "hour id: #{@hour.id}"
-	      @hour.numberbusy += 1
-	      @hour.save
+            if (@event.starttime.day == @event.endtime.day) 
+              for hour in @event.starttime.hour..(@event.endtime.hour + 1)
+	        logger.debug "Event in range: #{day}"
+	        logger.debug "Event in range: #{hour}"
+                @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
+	        logger.debug "hour id: #{@hour.id}"
+	        @hour.numberbusy += 1
+	        @hour.save
 		logger.debug "event's new numberbusy: #{@hour.numberbusy}"
-            end
+	      end
+	    elsif (day == @event.starttime.day)
+              for hour in @event.starttime.hour..23
+	        logger.debug "Event in range: #{day}"
+	        logger.debug "Event in range: #{hour}"
+                @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
+	        logger.debug "hour id: #{@hour.id}"
+	        @hour.numberbusy += 1
+	        @hour.save
+		logger.debug "event's new numberbusy: #{@hour.numberbusy}"
+	      end
+	    elsif (day == @event.endtime.day)
+              for hour in 0..@event.endtime.hour
+		logger.debug "Event in range: #{day}"
+	        logger.debug "Event in range: #{hour}"
+                @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
+	        logger.debug "hour id: #{@hour.id}"
+	        @hour.numberbusy += 1
+	        @hour.save
+		logger.debug "event's new numberbusy: #{@hour.numberbusy}"
+	      end
+	    end
 	  end
 	end
 	format.html { redirect_to @event, notice: 'Event was successfully created.' }
