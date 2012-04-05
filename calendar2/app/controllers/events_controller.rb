@@ -72,17 +72,7 @@ class EventsController < ApplicationController
 		logger.debug "event's new numberbusy: #{@hour.numberbusy}"
 	      end
 	    elsif (day == @event.endtime.day)
-              for hour in 0..(@event.endtime.hour + 1)
-		logger.debug "Event in range: #{day}"
-	        logger.debug "Event in range: #{hour}"
-                @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
-	        logger.debug "hour id: #{@hour.id}"
-	        @hour.numberbusy += 1
-	        @hour.save
-		logger.debug "event's new numberbusy: #{@hour.numberbusy}"
-	      end
-	    else
-              for hour in 0..23
+              for hour in 0..@event.endtime.hour
 		logger.debug "Event in range: #{day}"
 	        logger.debug "Event in range: #{hour}"
                 @hour = Hour.find_by_time(Time.utc(2012, 4, day, hour, 00, 00).in_time_zone)
