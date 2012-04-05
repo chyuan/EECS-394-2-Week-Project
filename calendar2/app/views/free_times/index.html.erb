@@ -1,9 +1,9 @@
-<h1>User Free Times</h1>
+<h1>Available Meeting Times</h1>
 <table>
-	<% @hours.each do |hour| %>
+	 <% @hours.each do |hour| %>
 		<tr>
 			<th> Time: <%= hour.time %> </th>
-		        <th> || # Busy: <%= hour.numberbusy %> </th>
+		    <th> || # Busy: <%= hour.numberbusy %> </th>
 		</tr>
 	<% end %>
 </table>

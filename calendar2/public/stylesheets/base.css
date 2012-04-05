@@ -1,0 +1,10 @@
+/* line 5, ../../sass/base.scss */
+* {
+  clear: both;
+}
+
+/* line 7, ../../sass/base.scss */
+body {
+  font-size: 10px;
+  width: 100%;
+}
