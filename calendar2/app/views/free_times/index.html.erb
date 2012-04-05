@@ -2,8 +2,8 @@
 <table>
 	<% @hours.each do |hour| %>
 		<tr>
-			<th> <%= hour.time %> </th>
-			<th> <%= hour.numberbusy %> </th>
+			<th> Time: <%= hour.time %> </th>
+		        <th> || # Busy: <%= hour.numberbusy %> </th>
 		</tr>
 	<% end %>
 </table>
